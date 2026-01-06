@@ -13,3 +13,13 @@ We're cool as long as we can view your solution without any pain.
 # Message from Applicant
 
 I have completed the assessment, thanks.
+
+# problem 1
+the code is in "three_sum_way.js" file
+
+# problem 2
+i created the swap currency form using react vite, it is inside folder called "swap_currency_project"
+the sample file from github is moved to folder called "old_files"
+
+# problem 3
+i created a react vite project to refactor and list out computational inefficiencies and anti-patterns in the code, the project folder is called "crypto_wallet_project", most of the code is located at folder "pages", you may directly go to the folder and look for "WalletPage.tsx" files

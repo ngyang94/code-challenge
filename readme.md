@@ -12,4 +12,4 @@ We're cool as long as we can view your solution without any pain.
 
 # Message from Applicant
 
-I have completed the test, thanks.
+I have completed the assessment, thanks.

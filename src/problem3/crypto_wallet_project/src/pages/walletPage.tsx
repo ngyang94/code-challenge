@@ -59,7 +59,7 @@ const WalletPage: React.FC<Props> = (props: Props) => {
         });
     }, [balances, prices]);
 
-    const formattedBalances = sortedBalances.map((balance: WalletBalance) => {
+    const formattedBalances:FormattedWalletBalance[] = sortedBalances.map((balance: WalletBalance) => {
         return {
         ...balance,
         formatted: balance.amount.toFixed()

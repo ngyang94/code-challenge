@@ -10,7 +10,7 @@ export interface FormattedWalletBalance extends WalletBalance{
 }
 
 export interface Props extends BoxProps {
-    children: ReactNode;
+    children?: ReactNode;
 }
 
 export interface BoxProps {

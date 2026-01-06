@@ -56,13 +56,13 @@ function App() {
   // do api call to get the currency exchange rate
   async function getAndSetCurrencyExchangeRateList(){
     setIsLoading(true);
-    const response:{status:number,data:[currencyExchangeType]} = await api.get("prices.json");
+    const response:{status:number,data:[currencyExchangeType],statusText:string} = await api.get("prices.json");
     setIsLoading(false);
     
-    console.log(response.data);
     if(response.status<300){
       setCurrencyExchangeRateList([...response.data]);
     }else{
+      setApiStatus({status:response.status,message:response.statusText})
       setCurrencyExchangeRateList([]);
     }
   }
@@ -316,7 +316,7 @@ function App() {
         isLoading&&<Preloader />
       }
       {!!apiStatus.status&&<AlertDismissible status={apiStatus.status<=300?"success":"danger"} show={!!apiStatus.status} close={()=>{setApiStatus({status:0,message:""})}} onClose={()=>{setApiStatus({status:0,message:""})}}>{apiStatus.message}</AlertDismissible>}
-      <Form className='swap-currency-form' validated={swapCurForm.inputAmount.validated||swapCurForm.inputAmountExchangeCurrency.validated||swapCurForm.outputAmountExchangeCurrency.validated} onSubmit={submitSwapCurFormHandler} noValidate>
+      <Form className='swap-currency-form' validated={swapCurForm.inputAmount.validated&&swapCurForm.inputAmountExchangeCurrency.validated&&swapCurForm.outputAmountExchangeCurrency.validated} onSubmit={submitSwapCurFormHandler} noValidate>
         <h5>Swap</h5>
         <Row>
           <Col md="12" lg="6" className='mb-3'>

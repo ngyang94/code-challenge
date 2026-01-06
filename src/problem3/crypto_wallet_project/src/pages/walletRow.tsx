@@ -1,9 +1,9 @@
 
 
-export default function WalletRow({amount,usdValue,formattedAmount,className}:{amount:number,usdValue:number,formattedAmount:string,className?:string[]}){
+export default function WalletRow({amount,usdValue,formattedAmount,className}:{amount:number,usdValue:number,formattedAmount:string,className?:string}){
 
     return <>
-        <div {...className}>
+        <div className={className}>
             <div>
                 Amount: {amount}
             </div>

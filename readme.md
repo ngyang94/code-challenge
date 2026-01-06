@@ -1,3 +1,4 @@
+# Message From Hiring Manager
 # 99Tech Code Challenge #1 #
 
 Note that if you fork this repository, your responses may be publicly linked to this repo.  
@@ -8,3 +9,7 @@ It is important that you minimally attempt the problems, even if you do not arri
 ## Submission ##
 You can either provide a link to an online repository, attach the solution in your application, or whichever method you prefer.
 We're cool as long as we can view your solution without any pain.
+
+# Message from Applicant
+
+I have completed the test, thanks.

@@ -1,11 +1,11 @@
-
+import WalletPage from "./pages/walletPage";
 import './App.css'
 
 function App() {
 
   return (
     <>
-      hello world
+      <WalletPage></WalletPage>
     </>
   )
 }

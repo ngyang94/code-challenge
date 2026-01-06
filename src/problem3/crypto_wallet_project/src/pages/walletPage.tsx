@@ -9,7 +9,7 @@ import {useWalletBalances,usePrices} from "../utils/utils";
 const WalletPage: React.FC<Props> = (props: Props) => {
     const { children, ...rest } = props;
     const balances = useWalletBalances(); 
-    const prices = usePrices();
+    const prices:any = usePrices();
 
     const getPriority = (blockchain: any): number => {
         switch (blockchain) {
@@ -38,7 +38,7 @@ const WalletPage: React.FC<Props> = (props: Props) => {
             }
             return false
         }).sort((lhs: WalletBalance, rhs: WalletBalance) => {
-                const leftPriority = getPriority(lhs.blockchain);
+            const leftPriority = getPriority(lhs.blockchain);
             const rightPriority = getPriority(rhs.blockchain);
             if (leftPriority > rightPriority) {
                 return -1;
@@ -48,8 +48,8 @@ const WalletPage: React.FC<Props> = (props: Props) => {
                 return 0; // possible rightPriority==leftPriority and caused no return, so add else with return 0 
             }
         });
-    }, [balances, prices]);
-
+    }, [balances]);//removed prices from checking because price will not cause any changes to this sortedBalances variable
+    
     const formattedBalances:FormattedWalletBalance[] = sortedBalances.map((balance: WalletBalance) => { // added data type FormattedWalletBalance[] to variable formattedBalances
         return {
         ...balance,
@@ -61,16 +61,17 @@ const WalletPage: React.FC<Props> = (props: Props) => {
         const usdValue = prices[balance.currency] * balance.amount;
 
         const classes = {
-            row:["wallet"]
+            row:"card"
         }
+        
         return (
-        <WalletRow 
-            className={classes.row}
-            key={index}
-            amount={balance.amount}
-            usdValue={usdValue}
-            formattedAmount={balance.formatted}
-        />
+            <WalletRow 
+                className={classes.row}
+                key={index}
+                amount={balance.amount}
+                usdValue={usdValue}
+                formattedAmount={balance.formatted}
+            />
         )
     })
 
@@ -80,3 +81,5 @@ const WalletPage: React.FC<Props> = (props: Props) => {
         </div>
     )
 }
+
+export default WalletPage;

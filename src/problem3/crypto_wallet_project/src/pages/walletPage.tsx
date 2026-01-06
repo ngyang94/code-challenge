@@ -3,13 +3,14 @@ import { type ReactNode,useMemo } from "react";
 interface WalletBalance {
   currency: string;
   amount: number;
+  blockchain:string;
 }
 interface FormattedWalletBalance extends WalletBalance{
   formatted: string;
 }
 
 interface Props extends BoxProps {
-    children: ReactNode
+    children: ReactNode;
 }
 
 interface BoxProps {

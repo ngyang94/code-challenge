@@ -90,7 +90,7 @@ function App() {
       setTimeout(function(){
         setApiStatus({
           status:200,
-          message:"Exchanged successfully."
+          message:"Swapped successfully."
         })
         setIsLoading(false)
       },2000)

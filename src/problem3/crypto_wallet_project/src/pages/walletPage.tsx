@@ -1,25 +1,14 @@
-import { type ReactNode,useMemo } from "react";
+import { useMemo } from "react";
 
-interface WalletBalance {
-    currency: string;
-    amount: number;
-    blockchain:string;
-}
-interface FormattedWalletBalance extends WalletBalance{
-    formatted: string;
-}
+import WalletRow from "./walletRow"; //created the missing WalletRow component
+import type {WalletBalance,FormattedWalletBalance,Props} from "../models/models" //imported the data type/interface from models/models.ts
+import {useWalletBalances,usePrices} from "../utils/utils";
 
-interface Props extends BoxProps {
-    children: ReactNode;
-}
-
-interface BoxProps {
-
-}
+// moved the data type/interface to models/model.ts file
 
 const WalletPage: React.FC<Props> = (props: Props) => {
     const { children, ...rest } = props;
-    const balances = useWalletBalances();
+    const balances = useWalletBalances(); 
     const prices = usePrices();
 
     const getPriority = (blockchain: any): number => {
@@ -42,13 +31,13 @@ const WalletPage: React.FC<Props> = (props: Props) => {
     const sortedBalances = useMemo(() => {
         return balances.filter((balance: WalletBalance) => {
             const balancePriority = getPriority(balance.blockchain);
-            if (balancePriority > -99) {
+            if (balancePriority > -99) { //changed lhsPriority to balancePriority
                 if (balance.amount <= 0) {
                 return true;
                 }
             }
             return false
-            }).sort((lhs: WalletBalance, rhs: WalletBalance) => {
+        }).sort((lhs: WalletBalance, rhs: WalletBalance) => {
                 const leftPriority = getPriority(lhs.blockchain);
             const rightPriority = getPriority(rhs.blockchain);
             if (leftPriority > rightPriority) {
@@ -59,15 +48,19 @@ const WalletPage: React.FC<Props> = (props: Props) => {
         });
     }, [balances, prices]);
 
-    const formattedBalances:FormattedWalletBalance[] = sortedBalances.map((balance: WalletBalance) => {
+    const formattedBalances:FormattedWalletBalance[] = sortedBalances.map((balance: WalletBalance) => { // added data type FormattedWalletBalance[] to variable formattedBalances
         return {
         ...balance,
         formatted: balance.amount.toFixed()
         }
     })
 
-    const rows = formattedBalances.map((balance: FormattedWalletBalance, index: number) => {
+    const rows = formattedBalances.map((balance: FormattedWalletBalance, index: number) => { // changed sortedBalances variable to formattedBalances
         const usdValue = prices[balance.currency] * balance.amount;
+
+        const classes = {
+            row:["wallet"]
+        }
         return (
         <WalletRow 
             className={classes.row}

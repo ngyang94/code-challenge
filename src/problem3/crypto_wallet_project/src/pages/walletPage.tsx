@@ -1,3 +1,5 @@
+import { type ReactNode } from "react";
+
 interface WalletBalance {
   currency: string;
   amount: number;
@@ -7,8 +9,13 @@ interface FormattedWalletBalance extends WalletBalance{
 }
 
 interface Props extends BoxProps {
+    children: ReactNode
+}
+
+interface BoxProps {
 
 }
+
 const WalletPage: React.FC<Props> = (props: Props) => {
   const { children, ...rest } = props;
   const balances = useWalletBalances();
